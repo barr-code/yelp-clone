@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :restaurants
+  resources :restaurants do
+    resources :reviews
+  end
+end
 
   # get 'restaurants'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -57,4 +60,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
