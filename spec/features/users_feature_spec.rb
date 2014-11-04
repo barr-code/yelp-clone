@@ -35,3 +35,12 @@ context 'user signed in and on the homepage' do
 		expect(page).not_to have_link 'Sign up'
 	end
 end
+
+context 'user not signed in' do
+	it 'must be logged in to create restaurants' do
+		visit '/'
+		click_link 'Add a restaurant'
+		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+	end
+
+end
