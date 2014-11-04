@@ -39,4 +39,5 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'rspec-rails', group: :test
+gem 'rspec-collection_matchers', group: :test
 gem 'capybara', group: :test
