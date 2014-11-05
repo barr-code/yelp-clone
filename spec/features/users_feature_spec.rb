@@ -37,11 +37,30 @@ context 'user signed in and on the homepage' do
 end
 
 context 'user not signed in' do
+
+	before do
+		Restaurant.create(name: "Vic's Cafe")
+	end
+
 	it 'must be logged in to create restaurants' do
 		visit '/'
 		click_link 'Add a restaurant'
 		expect(page).to have_content 'You need to sign in or sign up before continuing.'
 	end
 
+	it 'must be logged in to edit restaurants' do
+		visit '/'
+		click_link "Edit Vic's Cafe"
+		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+	end
+
+	it 'must be logged in to delete a restaurant' do
+		visit '/'
+		click_link "Delete Vic's Cafe"
+		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+	end
+
 end
+
+
 
