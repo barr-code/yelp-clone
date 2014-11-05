@@ -4,7 +4,7 @@
 <p><%= @restaurant.rating %></p>
 
 <% if !@restaurant.reviews.any? %>
-	<p>No reviews.</p>
+	<p>Be the first to review <%= @restaurant.name %></p>
 <% else %>
 	<ul>
 	<% @restaurant.reviews.each do |review| %>

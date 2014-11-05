@@ -44,3 +44,4 @@ context 'user not signed in' do
 	end
 
 end
+

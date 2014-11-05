@@ -5,7 +5,7 @@
 			<%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %><br>
 			<%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %></h3>
 		<% if !restaurant.reviews.any? %>
-			<p>No reviews.</p>
+			<p>Be the first to review <%= restaurant.name %>.</p>
 		<% else %>
 			<ul>
 				<% restaurant.reviews.each do |review| %>
