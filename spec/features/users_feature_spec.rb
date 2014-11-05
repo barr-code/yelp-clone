@@ -60,6 +60,12 @@ context 'user not signed in' do
 		expect(page).to have_content 'You need to sign in or sign up before continuing.'
 	end
 
+	it 'must be logged in to leave a review' do
+		visit '/'
+		click_link "Review Vic's Cafe"
+		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+	end
+
 end
 
 
