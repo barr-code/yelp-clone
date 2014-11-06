@@ -30,6 +30,6 @@ describe 'reviewing' do
 		click_link 'Sign out'
 		sign_up("new@user.com", "password", "password")
 		add_review("KFC","pretty good", "5")
-		expect(page).to have_content "Average rating: 4"
+		expect(page).to have_content "Average rating: ★★★★☆"
 	end
 end
