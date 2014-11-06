@@ -72,5 +72,10 @@ context 'user lacks authorization' do
 		sign_up("newuser@test.com", "hercules", "hercules")
 		expect(page).not_to have_link "Edit Vic's Cafe"
 	end
+
+	it 'cannot delete a restaurant that it did not create' do
+		sign_up('newuser@test.com', 'hercules', 'hercules')
+		expect(page).not_to have_link "Delete Vic's Cafe"
+	end
 end
 
