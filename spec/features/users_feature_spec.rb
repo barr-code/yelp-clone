@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative './helpers/user_helper'
 
 context 'user not signed in and on the homepage' do
 	it 'should see a "sign in" link and a "sign up" link' do
@@ -17,11 +18,7 @@ context 'user signed in and on the homepage' do
 
 	before do
 		visit '/'
-		click_link 'Sign up'
-		fill_in 'Email', with: 'test@example.com'
-		fill_in 'Password', with: 'testtest'
-		fill_in 'Password confirmation', with: 'testtest'
-		click_button 'Sign up'
+		sign_up
 	end
 
 	it 'should see "sign out" link' do
@@ -38,10 +35,6 @@ end
 
 context 'user not signed in' do
 
-	before do
-		Restaurant.create(name: "Vic's Cafe")
-	end
-
 	it 'must be logged in to create restaurants' do
 		visit '/'
 		click_link 'Add a restaurant'
@@ -50,14 +43,23 @@ context 'user not signed in' do
 
 	it 'must be logged in to edit restaurants' do
 		visit '/'
-		click_link "Edit Vic's Cafe"
-		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+		expect(page).not_to have_content "Edit Vic's Cafe"
 	end
 
 	it 'must be logged in to delete a restaurant' do
 		visit '/'
-		click_link "Delete Vic's Cafe"
-		expect(page).to have_content 'You need to sign in or sign up before continuing.'
+		expect(page).not_to have_content "Delete Vic's Cafe"
+	end
+
+end
+
+context 'user lacks authorization' do
+
+	before do
+		visit '/'
+		sign_up
+		add_restaurant
+		click_on 'Sign out'
 	end
 
 	it 'must be logged in to leave a review' do
@@ -66,7 +68,9 @@ context 'user not signed in' do
 		expect(page).to have_content 'You need to sign in or sign up before continuing.'
 	end
 
+	it 'cannot edit a restaurant that it did not create' do
+		sign_up("newuser@test.com", "hercules", "hercules")
+		expect(page).not_to have_link "Edit Vic's Cafe"
+	end
 end
-
-
 
