@@ -11,3 +11,10 @@ def add_restaurant(name = "Vic's Cafe")
 	fill_in 'Name', with: name
 	click_button 'Create Restaurant'
 end
+
+def add_review(restaurant, thought, rating)
+	click_link "Review #{restaurant}"
+	fill_in 'Thoughts', with: thought
+	select rating, from: 'Rating'
+	click_button 'Leave Review'
+end
