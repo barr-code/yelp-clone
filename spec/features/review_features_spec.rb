@@ -24,4 +24,12 @@ describe 'reviewing' do
 		expect(page).not_to have_content "pretty bad"
 		expect(page).to have_content "You have already reviewed this restaurant, chump!"
 	end
+
+	it 'displays an average rating for all reviews' do
+		add_review("KFC", "so so", "3")
+		click_link 'Sign out'
+		sign_up("new@user.com", "password", "password")
+		add_review("KFC","pretty good", "5")
+		expect(page).to have_content "Average rating: 4"
+	end
 end
