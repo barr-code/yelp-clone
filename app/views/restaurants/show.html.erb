@@ -1,7 +1,7 @@
 <h1><%= @restaurant.name %></h1>
 
 <p><%= @restaurant.description %></p>
-<p>Average rating: <%= @restaurant.average_rating %></p>
+<p>Average rating: <%= star_rating(@restaurant.average_rating) %></p>
 
 <% if !@restaurant.reviews.any? %>
 	<p>Be the first to review <%= @restaurant.name %></p>
